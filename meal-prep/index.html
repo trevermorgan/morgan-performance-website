@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Meal Prep System | Morgan Performance</title>
+<meta name="description" content="How to feed a demanding life. Under 2.5 hours. One weekend. Every meal handled.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1a1a1a;
+  --bg2: #212121;
+  --bg3: #2a2a2a;
+  --border: #333;
+  --white: #f2efe9;
+  --dim: #908b84;
+  --orange: #d4550a;
+  --orange2: #e8620f;
+  --oglow: rgba(212,85,10,0.05);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: 'Crimson Pro', Georgia, serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 1.5rem;
+  background: rgba(26,26,26,.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,85,10,.12);
+}
+.nl { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: .18em; color: var(--white); text-decoration: none; }
+.nl span { color: var(--orange); }
+nav ul { display: none; gap: 2rem; list-style: none; align-items: center; }
+nav ul a { font-family: 'DM Mono', monospace; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color .2s; }
+nav ul a:hover { color: var(--white); }
+.ncta { color: var(--orange) !important; border: 1px solid rgba(212,85,10,.5); padding: .4rem 1rem; }
+.ncta:hover { background: var(--orange) !important; color: var(--bg) !important; }
+.nav-apply { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; background: var(--orange); color: var(--bg); padding: .5rem 1rem; text-decoration: none; }
+
+/* HERO */
+#hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 5rem 1.5rem 3rem;
+  position: relative; overflow: hidden;
+}
+.hbg {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(6rem, 38vw, 22rem);
+  color: rgba(255,255,255,.018); letter-spacing: .05em;
+  pointer-events: none; user-select: none; white-space: nowrap;
+}
+.hcontent { position: relative; z-index: 2; opacity: 0; animation: fadeUp .9s ease forwards .2s; }
+.eyebrow { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--orange); margin-bottom: .8rem; display: flex; align-items: center; gap: .8rem; }
+.eyebrow::after { content: ''; display: block; width: 30px; height: 1px; background: var(--orange); opacity: .5; }
+.hhead { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 15vw, 9rem); line-height: .9; letter-spacing: .02em; margin-bottom: 1.2rem; }
+.hhead em { font-style: normal; color: var(--orange); display: block; }
+.htag { font-size: 1rem; font-style: italic; color: var(--dim); border-left: 2px solid var(--orange); padding: .6rem 1.2rem; margin-bottom: 2.2rem; background: var(--oglow); line-height: 1.6; max-width: 540px; }
+.hactions { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+.btn-fill { font-family: 'DM Mono', monospace; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; background: var(--orange); color: var(--bg); padding: 1rem 2rem; text-decoration: none; display: inline-block; transition: background .2s; }
+.btn-fill:hover { background: var(--orange2); }
+.btn-ghost { font-family: 'DM Mono', monospace; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); text-decoration: none; display: flex; align-items: center; gap: .5rem; padding: .2rem 0; transition: color .2s; }
+.btn-ghost:hover { color: var(--white); }
+.btn-ghost::after { content: '→'; }
+
+/* TICKER */
+.ticker { background: var(--orange); padding: .8rem 0; overflow: hidden; }
+.ticker-inner { display: flex; animation: ticker 24s linear infinite; white-space: nowrap; }
+.ti { font-family: 'Bebas Neue', sans-serif; font-size: .85rem; letter-spacing: .2em; color: var(--bg); padding: 0 2rem; flex-shrink: 0; }
+.ts { color: rgba(26,26,26,.35); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* WHAT THIS IS */
+#what { padding: 4rem 1.5rem; border-top: 1px solid var(--border); }
+.what-grid { display: flex; flex-direction: column; gap: 3rem; }
+.stitle { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 9vw, 4.8rem); line-height: .95; letter-spacing: .03em; margin-bottom: 1.2rem; }
+.body-text p { color: var(--dim); margin-bottom: 1.3rem; font-size: 1rem; font-weight: 300; line-height: 1.8; }
+.body-text p strong { color: var(--white); font-weight: 600; }
+.pull { font-size: 1.05rem; font-style: italic; color: var(--white); border-left: 2px solid var(--orange); padding: .8rem 1.2rem; margin: 1.8rem 0; background: var(--oglow); line-height: 1.65; }
+
+/* STATS */
+.stats { border: 1px solid var(--border); }
+.stat { padding: 1.4rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.stat:last-child { border-bottom: none; }
+.sv { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--orange); line-height: 1; }
+.sl { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); text-align: right; }
+
+/* LEVELS */
+#levels { padding: 4rem 1.5rem; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.levels-intro { color: var(--dim); font-size: 1rem; font-weight: 300; margin-bottom: 2.5rem; line-height: 1.8; max-width: 600px; }
+.level-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+.level-card { background: var(--bg2); padding: 1.8rem 1.5rem; position: relative; overflow: hidden; }
+.level-card.active { background: var(--bg3); }
+.level-num { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: rgba(212,85,10,.1); line-height: 1; position: absolute; right: 1.2rem; top: 1rem; }
+.level-badge { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--orange); margin-bottom: .5rem; display: block; }
+.level-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: .03em; margin-bottom: .5rem; line-height: 1; }
+.level-rule { height: 1px; background: var(--border); margin: 1rem 0; }
+.level-desc { font-size: .95rem; color: var(--dim); font-weight: 300; line-height: 1.7; }
+.level-detail { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .06em; color: var(--dim); line-height: 1.7; }
+
+/* WHAT'S INSIDE */
+#inside { padding: 4rem 1.5rem; border-top: 1px solid var(--border); }
+.inside-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); margin-top: 2rem; }
+.inside-item { background: var(--bg); padding: 1.4rem 1.5rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+.inside-arrow { color: var(--orange); font-family: 'DM Mono', monospace; font-size: .8rem; flex-shrink: 0; margin-top: .18rem; }
+.inside-text strong { display: block; font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: .2rem; }
+.inside-text span { font-size: .92rem; color: var(--dim); font-weight: 300; line-height: 1.65; }
+
+/* CTA */
+#cta { padding: 4rem 1.5rem; background: var(--bg2); border-top: 1px solid var(--border); }
+.cta-inner { max-width: 640px; }
+.cta-pull { font-size: 1.1rem; font-style: italic; color: var(--white); border-left: 2px solid var(--orange); padding: .8rem 1.2rem; margin-bottom: 2rem; background: var(--oglow); line-height: 1.65; }
+.cta-body { color: var(--dim); font-size: 1rem; font-weight: 300; line-height: 1.8; margin-bottom: 2rem; }
+.cta-actions { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+.cta-note { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .1em; color: var(--border); margin-top: .8rem; }
+
+/* FOOTER */
+footer { padding: 2rem 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
+.fbrand { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .18em; color: var(--white); }
+.fbrand span { color: var(--orange); }
+.fcopy { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .1em; color: var(--border); }
+.footer-links { display: flex; flex-direction: column; gap: .5rem; align-items: center; }
+.footer-links a { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .08em; color: var(--dim); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--orange); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* TABLET */
+@media(min-width: 640px) {
+  nav { padding: 1.3rem 2.5rem; }
+  .nav-apply { display: none; }
+  nav ul { display: flex; }
+  #hero { padding: 5rem 2.5rem 4rem; }
+  .hactions { flex-direction: row; align-items: center; }
+  #what, #levels, #inside, #cta { padding: 5rem 2.5rem; }
+  .what-grid { flex-direction: row; gap: 5rem; align-items: start; }
+  .what-left { flex: 1.2; }
+  .what-right { flex: 1; flex-shrink: 0; }
+  .stat { flex-direction: column; align-items: flex-start; gap: .3rem; }
+  .sl { text-align: left; }
+  .level-cards { flex-direction: row; }
+  .level-card { flex: 1; }
+  footer { flex-direction: row; justify-content: space-between; text-align: left; }
+  .footer-links { flex-direction: row; gap: 1.5rem; }
+}
+
+/* DESKTOP */
+@media(min-width: 1024px) {
+  nav { padding: 1.4rem 4rem; }
+  .nl { font-size: 1.35rem; }
+  #hero { padding: 0 4rem 6rem; justify-content: flex-end; min-height: 100vh; }
+  #what, #levels, #inside, #cta { padding: 7rem 4rem; }
+  footer { padding: 2rem 4rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://morgan-performance.com" class="nl">MORGAN<span>.</span>PERFORMANCE</a>
+  <ul>
+    <li><a href="https://morgan-performance.com#about">About</a></li>
+    <li><a href="https://morgan-performance.com#coaching">Coaching</a></li>
+    <li><a href="https://morgan-performance.com#apply" class="ncta">Apply Now</a></li>
+  </ul>
+  <a href="https://morgan-performance.com#apply" class="nav-apply">Apply</a>
+</nav>
+
+<section id="hero">
+  <div class="hbg" aria-hidden="true">FUEL</div>
+  <div class="hcontent">
+    <div class="eyebrow">Free Guide</div>
+    <h1 class="hhead">The Meal<br>Prep <em>System.</em></h1>
+    <p class="htag">Under 2.5 hours. One weekend. Every meal handled.</p>
+    <div class="hactions">
+      <a href="https://drive.google.com/file/d/1oTliwJEUC2PnHj2gHd3DrakhMkmp6h_0/view?usp=sharing" class="btn-fill" target="_blank">Read the Guide</a>
+      <a href="#what" class="btn-ghost">What's inside</a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ti">Under 2.5 Hours</span><span class="ti ts">·</span>
+    <span class="ti">One Weekend</span><span class="ti ts">·</span>
+    <span class="ti">Every Meal Handled</span><span class="ti ts">·</span>
+    <span class="ti">5 Levels of Precision</span><span class="ti ts">·</span>
+    <span class="ti">Same System</span><span class="ti ts">·</span>
+    <span class="ti">Different Dial</span><span class="ti ts">·</span>
+    <span class="ti">Under 2.5 Hours</span><span class="ti ts">·</span>
+    <span class="ti">One Weekend</span><span class="ti ts">·</span>
+    <span class="ti">Every Meal Handled</span><span class="ti ts">·</span>
+    <span class="ti">5 Levels of Precision</span><span class="ti ts">·</span>
+    <span class="ti">Same System</span><span class="ti ts">·</span>
+    <span class="ti">Different Dial</span><span class="ti ts">·</span>
+  </div>
+</div>
+
+<div id="what">
+  <div class="what-grid">
+    <div class="what-left reveal">
+      <div class="eyebrow">What This Is</div>
+      <h2 class="stitle">Not a Recipe Book.</h2>
+      <div class="body-text">
+        <p>I work a demanding career with long hours. I train hard. I have a young son and a wife I want to be present for. <strong>There is no window to cook during the week.</strong></p>
+        <p>If the food isn't ready when the week starts, one of two things happens: I miss my targets, or I make bad decisions under time pressure. Neither is acceptable when you're trying to perform at a high level across your career, your body, and your family.</p>
+        <div class="pull">Discipline is not white-knuckling every meal. Discipline is building the system that makes good nutrition the default.</div>
+        <p>This system was built during a bodybuilding prep. It works for anyone. Whether you're tracking every gram or just trying to eat real food consistently — the process is the same. <strong>The precision scales to your goals. The infrastructure stays identical.</strong></p>
+      </div>
+    </div>
+
+    <div class="what-right reveal">
+      <div class="stats">
+        <div class="stat">
+          <span class="sv">&lt;2.5hr</span>
+          <span class="sl">Full week of meals<br>at Level 3</span>
+        </div>
+        <div class="stat">
+          <span class="sv">$2–4</span>
+          <span class="sl">Cost per meal<br>vs. $10–15 eating out</span>
+        </div>
+        <div class="stat">
+          <span class="sv">5</span>
+          <span class="sl">Levels of precision<br>start anywhere</span>
+        </div>
+        <div class="stat">
+          <span class="sv">Zero</span>
+          <span class="sl">Decisions at 5am.<br>Already done.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="levels">
+  <div class="reveal">
+    <div class="eyebrow">The Framework</div>
+    <h2 class="stitle">Pick Your Level.</h2>
+    <p class="levels-intro">The system works at every level of precision. Your goal drives how tightly you track. The prep process itself doesn't change.</p>
+  </div>
+
+  <div class="level-cards reveal">
+    <div class="level-card">
+      <div class="level-num">1</div>
+      <span class="level-badge">Entry Point</span>
+      <h3>Consistent Eating</h3>
+      <div class="level-rule"></div>
+      <p class="level-desc">Not tracking macros. Stop eating fast food, start fueling with real food. Portion by eye. No scale required.</p>
+      <div class="level-rule"></div>
+      <div class="level-detail">Same containers. Same process. Zero barrier to starting.</div>
+    </div>
+
+    <div class="level-card active">
+      <div class="level-num">2</div>
+      <span class="level-badge">Most Common</span>
+      <h3>Macro Tracking</h3>
+      <div class="level-rule"></div>
+      <p class="level-desc">Daily macro targets. Every container gets the same build. Weigh protein, carbs, fats. Eyeball vegetables.</p>
+      <div class="level-rule"></div>
+      <div class="level-detail">Simpler than carb cycling. A food scale and a tracking app. That's it.</div>
+    </div>
+
+    <div class="level-card">
+      <div class="level-num">3</div>
+      <span class="level-badge">Performance Prep</span>
+      <h3>Carb Cycling</h3>
+      <div class="level-rule"></div>
+      <p class="level-desc">Different macro targets for different day types. Everything weighed. Meals pre-planned before you touch a container.</p>
+      <div class="level-rule"></div>
+      <div class="level-detail">Food choices narrow. Precision demands it. Built during a bodybuilding prep.</div>
+    </div>
+  </div>
+</div>
+
+<div id="inside">
+  <div class="reveal">
+    <div class="eyebrow">Inside the Guide</div>
+    <h2 class="stitle">Everything<br>You Need.</h2>
+  </div>
+
+  <div class="inside-grid reveal">
+    <div class="inside-item">
+      <span class="inside-arrow">→</span>
+      <div class="inside-text">
+        <strong>The full 3-day prep timeline</strong>
+        <span>Cook, process, assemble — spread across the weekend so it never feels like a marathon.</span>
+      </div>
+    </div>
+    <div class="inside-item">
+      <span class="inside-arrow">→</span>
+      <div class="inside-text">
+        <strong>Step-by-step assembly process</strong>
+        <span>Protein first, carbs, vegetables, fats. The exact order, and the reason for it.</span>
+      </div>
+    </div>
+    <div class="inside-item">
+      <span class="inside-arrow">→</span>
+      <div class="inside-text">
+        <strong>The sauce arsenal</strong>
+        <span>Every sauce under 15 calories a serving. Same base ingredients. Completely different meals all week.</span>
+      </div>
+    </div>
+    <div class="inside-item">
+      <span class="inside-arrow">→</span>
+      <div class="inside-text">
+        <strong>Breakfast and dinner systems</strong>
+        <span>The 5-minute breakfast container. What dinner looks like when everything else is already handled.</span>
+      </div>
+    </div>
+    <div class="inside-item">
+      <span class="inside-arrow">→</span>
+      <div class="inside-text">
+        <strong>On the road</strong>
+        <span>Day trips, travel, no microwave. The system doesn't stop because your week did.</span>
+      </div>
+    </div>
+    <div class="inside-item">
+      <span class="inside-arrow">→</span>
+      <div class="inside-text">
+        <strong>The full approved food list</strong>
+        <span>Proteins, carbs, fats, vegetables, condiments, drinks. Your menu. Pick your staples and run it.</span>
+      </div>
+    </div>
+    <div class="inside-item">
+      <span class="inside-arrow">→</span>
+      <div class="inside-text">
+        <strong>Equipment list</strong>
+        <span>What you actually need. Nothing elaborate. Most of it you already own.</span>
+      </div>
+    </div>
+    <div class="inside-item">
+      <span class="inside-arrow">→</span>
+      <div class="inside-text">
+        <strong>The real cost breakdown</strong>
+        <span>Three to four days of food for the price of one Chipotle trip. Store brand. Zero need for organic.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cta">
+  <div class="cta-inner reveal">
+    <div class="eyebrow">Get the Guide</div>
+    <h2 class="stitle">Build It Once.<br>Run It Every Week.</h2>
+    <div class="cta-pull">The system earns you the week. You built the infrastructure — now the meals just happen.</div>
+    <p class="cta-body">Free. No email required. Read it, use it, adjust as your goals change. If you want to go further — coaching is the next step.</p>
+    <div class="cta-actions">
+      <a href="https://drive.google.com/file/d/1oTliwJEUC2PnHj2gHd3DrakhMkmp6h_0/view?usp=sharing" class="btn-fill" target="_blank">Read the Guide</a>
+      <a href="https://morgan-performance.com#apply" class="btn-ghost">Apply for Coaching</a>
+    </div>
+    <p class="cta-note">No gate. No form. Just the system.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="fbrand">MORGAN<span>.</span>PERFORMANCE</div>
+  <div class="fcopy">&copy; 2026 Morgan Performance. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="/cdn-cgi/l/email-protection#d9adabbcafbcab99b4b6abbeb8b7f4a9bcabbfb6abb4b8b7babcf7bab6b4"><span class="__cf_email__" data-cfemail="2a5e584f5c4f586a4745584d4b44075a4f584c4558474b44494f04494547">[email&#160;protected]</span></a>
+    <a href="https://instagram.com/morganperformance_" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/morgperformance" target="_blank" rel="noopener">X</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const obs = new IntersectionO

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morgan Performance | Trever Morgan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1a1a1a;
+  --bg2: #212121;
+  --bg3: #2a2a2a;
+  --border: #333;
+  --white: #f2efe9;
+  --dim: #908b84;
+  --orange: #d4550a;
+  --orange2: #e8620f;
+  --oglow: rgba(212,85,10,0.05);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: 'Crimson Pro', Georgia, serif; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 1.5rem;
+  background: rgba(26,26,26,.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,85,10,.12);
+}
+.nl { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: .18em; color: var(--white); text-decoration: none; }
+.nl span { color: var(--orange); }
+nav ul { display: none; gap: 2rem; list-style: none; align-items: center; }
+nav ul a { font-family: 'DM Mono', monospace; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color .2s; }
+nav ul a:hover { color: var(--white); }
+.ncta { color: var(--orange) !important; border: 1px solid rgba(212,85,10,.5); padding: .4rem 1rem; }
+.ncta:hover { background: var(--orange) !important; color: var(--bg) !important; }
+.nav-apply { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; background: var(--orange); color: var(--bg); padding: .5rem 1rem; text-decoration: none; }
+
+/* HERO */
+#home {
+  min-height: 100svh; display: flex; flex-direction: column;
+  justify-content: center; padding: 5rem 1.5rem 3rem;
+  position: relative; overflow: hidden;
+}
+.hbg {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(8rem, 40vw, 24rem);
+  color: rgba(255,255,255,.018); letter-spacing: .05em;
+  pointer-events: none; user-select: none; white-space: nowrap;
+}
+.hcontent { position: relative; z-index: 2; opacity: 0; animation: fadeUp .9s ease forwards .2s; }
+.hhead { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 16vw, 10rem); line-height: .9; letter-spacing: .02em; margin-bottom: 1.8rem; }
+.hhead em { font-style: normal; color: var(--orange); display: block; }
+.htag { font-size: 1.05rem; font-style: italic; color: var(--dim); border-left: 2px solid var(--orange); padding: .6rem 1.2rem; margin-bottom: 2.2rem; background: var(--oglow); line-height: 1.6; }
+.hactions { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+.btn-fill { font-family: 'DM Mono', monospace; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; background: var(--orange); color: var(--bg); padding: 1rem 2rem; text-decoration: none; display: block; width: 100%; text-align: center; transition: background .2s; }
+.btn-fill:hover { background: var(--orange2); }
+.btn-ghost { font-family: 'DM Mono', monospace; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); text-decoration: none; display: flex; align-items: center; gap: .5rem; padding: .2rem 0; }
+.btn-ghost::after { content: '\2192'; }
+.btn-ghost:hover { color: var(--white); }
+
+/* TICKER */
+.ticker { background: var(--orange); padding: .8rem 0; overflow: hidden; }
+.ticker-inner { display: flex; animation: ticker 22s linear infinite; white-space: nowrap; }
+.ti { font-family: 'Bebas Neue', sans-serif; font-size: .85rem; letter-spacing: .2em; color: var(--bg); padding: 0 2rem; flex-shrink: 0; }
+.ts { color: rgba(26,26,26,.35); }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* SHARED */
+section { padding: 4rem 1.5rem; }
+.eyebrow { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--orange); margin-bottom: .8rem; display: flex; align-items: center; gap: .8rem; }
+.eyebrow::after { content: ''; display: block; width: 30px; height: 1px; background: var(--orange); opacity: .5; }
+.stitle { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 9vw, 4.8rem); line-height: .95; letter-spacing: .03em; margin-bottom: 1.2rem; }
+
+/* ABOUT */
+#about { border-top: 1px solid var(--border); }
+.astats { display: grid; grid-template-columns: 1fr; border: 1px solid var(--border); margin-bottom: 3rem; }
+.astat { padding: 1.4rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.astat:last-child { border-bottom: none; }
+.sv { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--orange); line-height: 1; }
+.sl { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.abody p { color: var(--dim); margin-bottom: 1.4rem; font-size: 1rem; font-weight: 300; line-height: 1.8; }
+.abody p strong { color: var(--white); font-weight: 600; }
+.apull { font-size: 1.1rem; font-style: italic; color: var(--white); border-left: 2px solid var(--orange); padding: .8rem 1.2rem; margin: 2rem 0; background: var(--oglow); line-height: 1.65; }
+
+/* FRAMEWORK */
+#framework { border-top: 1px solid var(--border); background: var(--bg); }
+.fw-intro { color: var(--dim); font-size: 1rem; font-weight: 300; margin-bottom: 3rem; line-height: 1.8; }
+.fw-intro strong { color: var(--white); font-weight: 600; }
+.fw-pull { font-size: 1.1rem; font-style: italic; color: var(--white); border-left: 2px solid var(--orange); padding: .8rem 1.2rem; margin: 2rem 0 3rem; background: var(--oglow); line-height: 1.65; }
+.fw-levels { display: flex; flex-direction: column; gap: 1px; background: var(--border); margin-bottom: 2rem; }
+.fw-level { background: var(--bg); padding: 2rem 1.5rem; }
+.fw-level-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--orange); line-height: 1; margin-bottom: .3rem; }
+.fw-level-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .03em; margin-bottom: .8rem; line-height: 1; }
+.fw-level p { color: var(--dim); font-size: .95rem; font-weight: 300; line-height: 1.8; }
+.fw-level p strong { color: var(--white); font-weight: 600; }
+.fw-note { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .06em; color: var(--border); text-align: center; line-height: 1.8; margin-top: 1rem; }
+@media(min-width: 640px) {
+  .fw-levels { flex-direction: row; }
+  .fw-level { flex: 1; }
+}
+
+/* COACHING */
+#coaching { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.clead { color: var(--dim); font-size: 1rem; font-weight: 300; margin-bottom: 2.5rem; line-height: 1.8; }
+.cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); margin-bottom: 2rem; }
+.card { background: var(--bg2); padding: 2rem 1.5rem; transition: background .25s; }
+.card.featured { background: var(--bg3); position: relative; }
+.card.featured::before { content: 'Most Popular'; position: absolute; top: -1px; left: 0; right: 0; background: var(--orange); color: var(--bg); font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; text-align: center; padding: .3rem; }
+.cey { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--orange); margin-bottom: .8rem; display: block; margin-top: 1rem; }
+.card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: .03em; margin-bottom: .4rem; line-height: 1; }
+.cprice { font-family: 'Bebas Neue', sans-serif; font-size: 3.2rem; color: var(--orange); line-height: 1; }
+.cpsub { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .1em; color: var(--dim); display: block; margin-top: .2rem; margin-bottom: .5rem; }
+.price-annual { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .05em; color: var(--dim); margin-bottom: 1.5rem; display: block; }
+.price-annual strong { color: var(--white); }
+.psave { color: var(--orange); margin-left: .3rem; }
+.crule { height: 1px; background: var(--border); margin-bottom: 1.4rem; }
+.cdesc { font-family: 'Crimson Pro', serif; font-size: 1rem; color: var(--white); font-style: italic; margin-bottom: .4rem; line-height: 1.5; display: block; }
+.cdesc-sub { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .04em; color: var(--dim); margin-bottom: 1.4rem; line-height: 1.7; display: block; }
+.card ul { list-style: none; margin-bottom: 1.8rem; }
+.card ul li { font-size: .92rem; color: var(--dim); padding: .45rem 0; border-bottom: 1px solid rgba(51,51,51,.5); display: flex; gap: .7rem; align-items: flex-start; font-weight: 300; }
+.card ul li::before { content: '--'; color: var(--orange); font-family: 'DM Mono', monospace; font-size: .75rem; flex-shrink: 0; margin-top: .1rem; }
+.cbtn { display: block; text-align: center; width: 100%; font-family: 'DM Mono', monospace; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: 1rem; text-decoration: none; transition: all .2s; }
+.cbtn-fill { background: var(--orange); color: var(--bg); }
+.cbtn-fill:hover { background: var(--orange2); }
+.cbtn-out { border: 1px solid var(--border); color: var(--dim); }
+.cbtn-out:hover { border-color: var(--orange); color: var(--orange); }
+.cdisclaim { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .06em; color: var(--border); text-align: center; line-height: 1.8; }
+
+/* APPLY */
+#apply { border-top: 1px solid var(--border); }
+.fshell { background: var(--bg2); border: 1px solid var(--border); padding: 2rem 1.5rem; margin-bottom: 3rem; }
+.fshell h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: .03em; margin-bottom: .3rem; }
+.fsub { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .1em; color: var(--dim); margin-bottom: 2rem; display: block; }
+.fg { margin-bottom: 1.3rem; }
+.fg label { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--dim); display: block; margin-bottom: .4rem; }
+.fg input, .fg select, .fg textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--white); padding: .8rem .9rem; font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 300; outline: none; transition: border-color .2s; -webkit-appearance: none; appearance: none; border-radius: 0; }
+.fg input::placeholder, .fg textarea::placeholder { color: var(--border); }
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--orange); }
+.fg textarea { resize: vertical; min-height: 90px; }
+.fsubmit { width: 100%; background: var(--orange); color: var(--bg); border: none; padding: 1.1rem; font-family: 'DM Mono', monospace; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .2s; margin-top: .3rem; }
+.fsubmit:hover { background: var(--orange2); }
+.fnote { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .08em; color: var(--border); text-align: center; margin-top: .9rem; }
+.aleft p { color: var(--dim); font-size: 1rem; font-weight: 300; margin-bottom: 1.2rem; line-height: 1.8; }
+.areq { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.areq h4 { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+.areq ul { list-style: none; }
+.areq li { font-size: .95rem; color: var(--dim); padding: .55rem 0; border-bottom: 1px solid var(--border); display: flex; gap: .8rem; font-weight: 300; }
+.areq li::before { content: '→'; color: var(--orange); font-family: 'DM Mono', monospace; font-size: .78rem; flex-shrink: 0; }
+
+/* FOOTER */
+footer { padding: 2rem 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
+.fbrand { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .18em; color: var(--white); }
+.fbrand span { color: var(--orange); }
+.fcopy { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .1em; color: var(--border); }
+.footer-links { display: flex; flex-direction: column; gap: .5rem; align-items: center; }
+.footer-links a { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .08em; color: var(--dim); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--orange); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* TABLET */
+@media(min-width: 640px) {
+  nav { padding: 1.3rem 2.5rem; }
+  .nav-apply { display: none; }
+  nav ul { display: flex; }
+  #home { padding: 5rem 2.5rem 4rem; }
+  .hactions { flex-direction: row; align-items: center; }
+  .btn-fill { width: auto; display: inline-block; }
+  section { padding: 5rem 2.5rem; }
+  .astats { grid-template-columns: repeat(3, 1fr); }
+  .astat { border-bottom: none; border-right: 1px solid var(--border); flex-direction: column; align-items: center; text-align: center; gap: .3rem; }
+  .astat:last-child { border-right: none; }
+  .cards { flex-direction: row; }
+  .card { flex: 1; }
+  #apply .awrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start; }
+  .fshell { margin-bottom: 0; }
+  footer { flex-direction: row; justify-content: space-between; text-align: left; align-items: center; }
+  .footer-links { flex-direction: row; gap: 1.5rem; }
+}
+
+/* DESKTOP */
+@media(min-width: 1024px) {
+  nav { padding: 1.4rem 4rem; }
+  .nl { font-size: 1.35rem; }
+  #home { padding: 0 4rem 6rem; justify-content: flex-end; min-height: 100vh; }
+  section { padding: 7rem 4rem; }
+  #about { display: grid; grid-template-columns: 1fr 1.1fr; gap: 7rem; align-items: start; }
+  .asticky { position: sticky; top: 7rem; }
+  #apply .awrap { gap: 6rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nl">MORGAN<span>.</span>PERFORMANCE</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#framework">Framework</a></li>
+    <li><a href="#coaching">Coaching</a></li>
+    <li><a href="#apply" class="ncta">Apply Now</a></li>
+  </ul>
+  <a href="#apply" class="nav-apply">Apply</a>
+</nav>
+
+<section id="home">
+  <div class="hbg" aria-hidden="true">PERFORM</div>
+  <div class="hcontent">
+    <h1 class="hhead">Built For <em>All Of It.</em></h1>
+    <p class="htag">"If your goal is bigger than the discomfort it takes to achieve it — it will happen."</p>
+    <div class="hactions">
+      <a href="#apply" class="btn-fill">Apply to Work Together</a>
+      <a href="#about" class="btn-ghost">My Story</a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ti">Body</span><span class="ti ts">·</span>
+    <span class="ti">Career</span><span class="ti ts">·</span>
+    <span class="ti">Family</span><span class="ti ts">·</span>
+    <span class="ti">Performance</span><span class="ti ts">·</span>
+    <span class="ti">Hard Things</span><span class="ti ts">·</span>
+    <span class="ti">On Purpose</span><span class="ti ts">·</span>
+    <span class="ti">Body</span><span class="ti ts">·</span>
+    <span class="ti">Career</span><span class="ti ts">·</span>
+    <span class="ti">Family</span><span class="ti ts">·</span>
+    <span class="ti">Performance</span><span class="ti ts">·</span>
+    <span class="ti">Hard Things</span><span class="ti ts">·</span>
+    <span class="ti">On Purpose</span><span class="ti ts">·</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="asticky reveal">
+    <div class="eyebrow">About</div>
+    <h2 class="stitle">The Story<br>Behind It.</h2>
+    <div class="astats">
+      <div class="astat">
+        <span class="sv">19+</span>
+        <span class="sl">Years Training</span>
+      </div>
+      <div class="astat">
+        <span class="sv">4+</span>
+        <span class="sl">Years Coaching</span>
+      </div>
+      <div class="astat">
+        <span class="sv">All In</span>
+        <span class="sl">Career. Body. Family.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="abody reveal">
+    <p>I didn't grow up with any of this.</p>
+    <p>I grew up overweight, largely on my own, in a home that looked fine from the outside. <strong>Nobody handed me discipline.</strong> Nobody modeled what it looked like to take your health seriously, build a career with intention, or show up fully for the people who depend on you. I figured it out the hard way — which turned out to be the only way that actually works.</p>
+    <p>At sixteen I decided I was done being miserable. I lost the weight on my own. Got into athletics. Started lifting. Graduated valedictorian, earned senate nominations to the Air Force Academy, put myself through engineering school and an MBA while working fourteen-hour days. Became debt-free at twenty-eight. Built a career that made me the youngest factory manager in my company's history.</p>
+    <div class="apull">From the outside it looked like ambition. From the inside it was something simpler — I found out that doing hard things on purpose makes life worth living.</div>
+    <p>I didn't find any of this in some inspirational way. I walked into the gym because I disliked myself deeply. What started as punishment became discipline. Discipline became structure. Structure produced results. And the results created a kind of meaning I'd never experienced. <strong>Eventually I realized the gym wasn't the only place it worked.</strong> The same framework — do the hard thing, build the system, iterate — applied to my career, my marriage, how I show up as a father.</p>
+    <p>The discipline required to build a body is the same discipline required to build a career, a marriage, a family worth having. <strong>Physical performance isn't separate from professional performance or personal fulfillment. They're the same problem.</strong></p>
+    <p>That's what I coach.</p>
+    <p>I work with men who are ready to take themselves seriously. Men who have something to build toward — a body, a business, a better version of themselves — and who are willing to do the actual work to get there. The background doesn't matter. The career, the income, the starting point — none of it matters as much as the decision to stop accepting less than what you're capable of.</p>
+    <p>I built this inside a full life. Demanding career, a marriage I'm committed to, a son I'm raising to do hard things on purpose. <strong>No unlimited time, no perfect conditions. The same constraints you're working inside.</strong></p>
+    <p>That discipline doesn't shrink your life — it builds the foundation that makes everything else possible. Coffee dates with my wife on Saturday mornings. Cycling together as a family. My son at the gym with us since he was weeks old. The structure created the space, not the other way around.</p>
+    <p>That's not a limitation. That's the point. The version of this that works for you has to work inside your actual life — not some idealized version of it with unlimited hours and zero obligations.</p>
+    <p>You don't need perfect circumstances. I didn't have them. You need a goal bigger than your excuses and the willingness to move toward it every day.</p>
+    <div class="apull">If your goal is bigger than the discomfort it takes to achieve it — it will happen.</div>
+    <p>That's where we start.</p>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="reveal">
+    <div class="eyebrow">The Framework</div>
+    <h2 class="stitle">Your Goal Drives<br>Your Precision.</h2>
+    <p class="fw-intro">Making a transformation is uncomfortable. But being unhappy with your career, your marriage, and what you see in the mirror is also uncomfortable. <strong>You're choosing which discomfort you want.</strong></p>
+    <p class="fw-intro">The gym teaches you how to build a system before anything else does. Simple enough to execute consistently. Run it. Track the results. Know where to adjust when conditions change. <strong>That skill transfers to your career, your relationships, and every part of your life that matters.</strong></p>
+    <div class="fw-pull">Motivation toward the outcome burns out. Motivation toward the system sustains. Stop asking "am I seeing results." Start asking "did I execute today."</div>
+    <p class="fw-intro">Nobody's life changed because of one big decision. It changed because of a million tiny moments that didn't feel significant at the time. One more meal prepped instead of skipped. One more workout completed. One more time you chose the person you want to be over the person you are today. <strong>They add up. They always add up.</strong></p>
+    <p class="fw-intro">I meet you where you are. Not where I think you should be. Your goals determine how precise the system needs to be — and the coaching scales with you as those goals evolve.</p>
+  </div>
+
+  <div class="fw-levels reveal">
+    <div class="fw-level">
+      <div class="fw-level-num">01</div>
+      <div class="fw-level-name">Consistent Habits</div>
+      <p>No tracking app. No food scale. Portion by eye, eat consistent simple meals, show up to train. <strong>This alone puts you ahead of most people.</strong> Build the habits first. Prove to yourself you can do what you say you'll do. The precision comes later if your goals demand it.</p>
+    </div>
+    <div class="fw-level">
+      <div class="fw-level-num">02</div>
+      <div class="fw-level-name">Structured Tracking</div>
+      <p>Food scale. Tracking app. Structured program with progressive overload. <strong>Real accountability with real numbers.</strong> You have a specific goal — lose the weight, hit the strength target, build the physique — and you're ready to commit to the process that gets you there.</p>
+    </div>
+    <div class="fw-level">
+      <div class="fw-level-num">03</div>
+      <div class="fw-level-name">Full Precision</div>
+      <p>Gram-level tracking. Carb cycling. Periodized programming with every variable dialed. <strong>This is where I operate personally.</strong> Contest prep, maximum physique development, or performance goals that demand total control. Every meal planned, every session programmed, every adjustment intentional.</p>
+    </div>
+  </div>
+  <p class="fw-note reveal">Most people start at Level 1. Some never need to leave it. The system scales when your goals do.</p>
+</section>
+
+<section id="coaching">
+  <div class="reveal">
+    <div class="eyebrow">Coaching</div>
+    <h2 class="stitle">How We<br>Work Together.</h2>
+    <p class="clead">Every engagement is built around your specific situation — your goals, your schedule, your life. The methodology is proven. The application is personal.</p>
+  </div>
+
+  <div class="cards reveal">
+    <div class="card">
+      <span class="cey">Foundation</span>
+      <h3>Physique</h3>
+      <div class="cprice">$199</div>
+      <span class="cpsub">/ month</span>
+      <span class="price-annual">or <strong>$1,990 / year</strong><span class="psave"> — save $398</span></span>
+      <div class="crule"></div>
+      <span class="cdesc">All three levels. Your precision.</span>
+      <span class="cdesc-sub">Custom training and nutrition built for where you are right now — and scaled as your goals evolve.</span>
+      <ul>
+        <li>Custom training program matched to your level</li>
+        <li>Nutrition framework — from consistent habits to full macro precision</li>
+        <li>Bi-weekly check-in with progress review</li>
+        <li>Direct messaging access</li>
+        <li>Program adjustments as needed</li>
+      </ul>
+      <a href="#apply" class="cbtn cbtn-out">Apply</a>
+    </div>
+
+    <div class="card featured">
+      <span class="cey">Full Stack</span>
+      <h3>Performance</h3>
+      <div class="cprice">$299</div>
+      <span class="cpsub">/ month</span>
+      <span class="price-annual">or <strong>$2,990 / year</strong><span class="psave"> — save $598</span></span>
+      <div class="crule"></div>
+      <span class="cdesc">Build the body. Build the life.</span>
+      <span class="cdesc-sub">The discipline you build for yourself creates structure your family and career benefit from. This tier applies the same framework the gym teaches — to every domain that matters.</span>
+      <ul>
+        <li>Everything in Physique</li>
+        <li>Weekly 1:1 coaching call</li>
+        <li>Direct coaching on career, leadership, and relationships</li>
+        <li>Apply physical discipline to professional and personal performance</li>
+        <li>Identity and values work — who you're becoming, not just what you're building</li>
+        <li>Priority response within 24 hours</li>
+        <li>Quarterly strategy session</li>
+      </ul>
+      <a href="#apply" class="cbtn cbtn-fill">Apply</a>
+    </div>
+
+    <div class="card">
+      <span class="cey">Enterprise</span>
+      <h3>Corporate</h3>
+      <div class="cprice">Custom</div>
+      <span class="cpsub">pricing</span>
+      <div class="crule"></div>
+      <ul>
+        <li>Team or group coaching programs</li>
+        <li>Corporate wellness integration</li>
+        <li>Leadership performance focus</li>
+        <li>Scalable to any organization size</li>
+        <li>Customized to company goals</li>
+      </ul>
+      <a href="#apply" class="cbtn cbtn-out">Get in Touch</a>
+    </div>
+  </div>
+
+  <p class="cdisclaim reveal">Every client is personally reviewed before acceptance.</p>
+</section>
+
+<section id="apply">
+  <div class="eyebrow reveal">Apply</div>
+  <h2 class="stitle reveal">Start Here.</h2>
+
+  <div class="awrap">
+    <div class="fshell reveal" id="form-shell">
+      <h3>Application</h3>
+      <span class="fsub">Takes about 5 minutes. All information is kept private.</span>
+      <form id="apply-form">
+        <div class="fg"><label>First Name</label><input type="text" name="first_name" placeholder="John" autocomplete="given-name"></div>
+        <div class="fg"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith" autocomplete="family-name"></div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="john@email.com" autocomplete="email"></div>
+        <div class="fg"><label>Age</label><input type="number" name="age" placeholder="35" inputmode="numeric"></div>
+        <div class="fg"><label>Occupation</label><input type="text" name="occupation" placeholder="What do you do?"></div>
+        <div class="fg">
+          <label>Which option interests you?</label>
+          <select name="coaching_option">
+            <option value="" disabled selected>Select one</option>
+            <option>Physique — Training and Nutrition</option>
+            <option>Performance — Full Stack Coaching</option>
+            <option>Corporate — Team or Group</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>How would you describe your current approach to nutrition and training?</label>
+          <select name="current_approach">
+            <option value="" disabled selected>Select one</option>
+            <option>I'm not consistent yet — looking to build a foundation</option>
+            <option>I have a routine but I'm not tracking anything specific</option>
+            <option>I'm tracking macros and following a program but want to optimize</option>
+          </select>
+        </div>
+        <div class="fg"><label>What's your primary goal right now?</label><textarea name="primary_goal" placeholder="Be specific. What are you trying to build or change?"></textarea></div>
+        <div class="fg"><label>What's held you back so far?</label><textarea name="held_back" placeholder="Be honest. This is useful information."></textarea></div>
+        <div class="fg"><label>Anything else I should know?</label><textarea name="additional_info" placeholder="Training history, schedule constraints, context that matters..."></textarea></div>
+        <button type="submit" class="fsubmit" id="submit-btn">Submit Application</button>
+        <p class="fnote">You'll receive a response within 48 hours.</p>
+      </form>
+      <div id="form-confirm" style="display:none; padding:2.5rem 0;">
+        <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:1.2rem;">Application Received</div>
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.04em;color:var(--fg);margin-bottom:1.2rem;line-height:1.1;">You'll hear back<br>within 48 hours.</h3>
+        <p style="font-family:'Crimson Pro',serif;font-size:1.05rem;color:var(--dim);line-height:1.7;margin-bottom:0;">I review every application personally before responding. If it's a fit, we'll schedule an initial call.</p>
+        <p style="font-family:'Crimson Pro',serif;font-size:1.05rem;color:var(--dim);line-height:1.7;margin-top:1.2rem;">— Trever</p>
+      </div>
+    </div>
+
+    <div class="aleft reveal">
+      <p>Every client starts with an application. Not to gatekeep — to make sure we're the right fit for each other and that I can actually help you get where you're trying to go.</p>
+      <p>Fill out the form honestly. The more specific you are, the better I can evaluate whether we're a match and what working together looks like.</p>
+      <p>If it's a fit, you'll hear back within 48 hours to schedule an initial call.</p>
+      <div class="areq">
+        <h4>What I'm looking for</h4>
+        <ul>
+          <li>Men who are ready to do the actual work</li>
+          <li>Clear goals — a body, a standard, a better version of yourself</li>
+          <li>Commitment to the process, not just the outcome</li>
+          <li>Willingness to be honest about where you are right now</li>
+          <li>A full life you want to perform inside — not escape from</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fbrand">MORGAN<span>.</span>PERFORMANCE</div>
+  <div class="fcopy">&copy; 2026 Morgan Performance. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="mailto:trever@morgan-performance.com">trever@morgan-performance.com</a>
+    <a href="https://instagram.com/morganperformance_" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/morgperformance" target="_blank" rel="noopener">X</a>
+  </div>
+</footer>
+
+<script>
+// AJAX form submission
+const applyForm = document.getElementById('apply-form');
+if (applyForm) {
+  applyForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+    const data = new FormData(applyForm);
+    try {
+      const res = await fetch('https://formspree.io/f/mpqjnonn', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        applyForm.style.display = 'none';
+        document.querySelector('.fsub').style.display = 'none';
+        document.getElementById('form-confirm').style.display = 'block';
+      } else {
+        btn.textContent = 'Submit Application';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
+    } catch(err) {
+      btn.textContent = 'Submit Application';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+}
+
+document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+setTimeout(() => {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.classList.remove('visible');
+    obs.observe(el);
+  });
+}, 100);
+</script>
+</body>
+</html>
